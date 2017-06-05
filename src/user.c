@@ -2,22 +2,12 @@
 
 extern void tick_handler(void);
 
-#if 0
-#pragma vector=0xD
-__interrupt void TIM1_UPD_OVF_TRG_BRK_IRQHandler(void)
-{
-    TIM1_ClearITPendingBit(TIM1_IT_UPDATE);
-
-    tick_handler();
-}
-#else
 /**
   * @brief Timer1 Update/Overflow/Trigger/Break Interrupt routine.
   * @param  None
   * @retval None
   */
-INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_BRK_IRQHandler, 0xD)
-//void TIM2_UPD_OVF_IRQHandler(void) __interrupt (0xD)
+INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_BRK_IRQHandler, 11)
 {
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
@@ -26,7 +16,6 @@ INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_BRK_IRQHandler, 0xD)
 
     tick_handler();
 }
-#endif
 
 void system_clock_init(uint32_t freq)
 {
