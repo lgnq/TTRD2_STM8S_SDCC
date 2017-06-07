@@ -2,49 +2,69 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="lib\inc\stm8s.h" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\processor.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="656" topLine="30" />
+			<Cursor1 position="3488" topLine="102" />
+		</Cursor>
+	</File>
+	<File name="src\uart_task.c" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3778" topLine="97" />
+		</Cursor>
+	</File>
+	<File name="inc\stm8s_conf.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1479" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="lib\src\stm8s_clk.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12428" topLine="404" />
+		</Cursor>
+	</File>
+	<File name="lib\src\stm8s_uart1.c" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3794" topLine="73" />
 		</Cursor>
 	</File>
 	<File name="src\user.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1125" topLine="24" />
+			<Cursor1 position="2365" topLine="65" />
+		</Cursor>
+	</File>
+	<File name="src\scheduler.c" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4044" topLine="100" />
+		</Cursor>
+	</File>
+	<File name="src\heartbeat_task.c" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3528" topLine="129" />
+		</Cursor>
+	</File>
+	<File name="lib\src\stm8s_tim1.c" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4514" topLine="106" />
 		</Cursor>
 	</File>
 	<File name="src\main.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2180" topLine="27" />
+			<Cursor1 position="2063" topLine="34" />
 		</Cursor>
 	</File>
-	<File name="lib\src\stm8s_itc.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\watchdog_task.c" open="1" top="1" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2264" topLine="42" />
+			<Cursor1 position="3975" topLine="123" />
 		</Cursor>
 	</File>
-	<File name="src\scheduler.c" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\inc\stm8s.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4051" topLine="101" />
-		</Cursor>
-	</File>
-	<File name="lib\src\stm8s_flash.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6255" topLine="180" />
+			<Cursor1 position="656" topLine="30" />
 		</Cursor>
 	</File>
 	<File name="src\key_task.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2970" topLine="74" />
-		</Cursor>
-	</File>
-	<File name="src\processor.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6191" topLine="216" />
-		</Cursor>
-	</File>
-	<File name="src\watchdog_task.c" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2963" topLine="78" />
+			<Cursor1 position="5261" topLine="134" />
 		</Cursor>
 	</File>
 	<File name="inc\main.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,9 +72,19 @@
 			<Cursor1 position="1815" topLine="27" />
 		</Cursor>
 	</File>
-	<File name="inc\stm8s_conf.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\src\stm8s_tim2.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1479" topLine="15" />
+			<Cursor1 position="39182" topLine="1093" />
+		</Cursor>
+	</File>
+	<File name="lib\src\stm8s_flash.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6255" topLine="180" />
+		</Cursor>
+	</File>
+	<File name="lib\src\stm8s_itc.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2262" topLine="42" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

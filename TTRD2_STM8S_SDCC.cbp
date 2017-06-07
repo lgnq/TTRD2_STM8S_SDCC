@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="sdcc" />
 				<Compiler>
+					<Add option="--out-fmt-ihx" />
 					<Add option="-mstm8" />
 					<Add option="--debug" />
 					<Add directory="inc" />
