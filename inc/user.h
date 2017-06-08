@@ -18,4 +18,6 @@ void mcu_init(void);
 
 void tasks_init(void);
 
+INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_BRK_IRQHandler, 11);
+
 #endif
