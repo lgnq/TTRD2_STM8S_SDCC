@@ -1,15 +1,13 @@
 /*----------------------------------------------------------------------------*-
 
-  ttrd2-03a-t0401a-v001a_uart2_buff_o_task.c (Release 2017-02-22a)
+  uart_task.c (Release 2017-02-22a)
 
   ----------------------------------------------------------------------------
 
-  Simple UART2 'buffered output' library for STM32F4 (Nucleo-F401RE board).
-  
   Also offers unbuffered ('flush whole buffer') option: use this with care!
-  
+
   Allows use of USB port on board as UART2 interface.
-    
+
   See 'ERES2' (Chapter 3) for further information.
 
 -*----------------------------------------------------------------------------*/
@@ -17,30 +15,30 @@
 
   This code is copyright (c) 2014-2017 SafeTTy Systems Ltd.
 
-  This code forms part of a Time-Triggered Reference Design (TTRD) that is 
-  documented in the following book: 
+  This code forms part of a Time-Triggered Reference Design (TTRD) that is
+  documented in the following book:
 
-   Pont, M.J. (2016) 
-   "The Engineering of Reliable Embedded Systems (Second Edition)", 
+   Pont, M.J. (2016)
+   "The Engineering of Reliable Embedded Systems (Second Edition)",
    Published by SafeTTy Systems Ltd. ISBN: 978-0-9930355-3-1.
 
-  Both the TTRDs and the above book ("ERES2") describe patented 
+  Both the TTRDs and the above book ("ERES2") describe patented
   technology and are subject to copyright and other restrictions.
 
-  This code may be used without charge: [i] by universities and colleges on 
-  courses for which a degree up to and including 'MSc' level (or equivalent) 
-  is awarded; [ii] for non-commercial projects carried out by individuals 
+  This code may be used without charge: [i] by universities and colleges on
+  courses for which a degree up to and including 'MSc' level (or equivalent)
+  is awarded; [ii] for non-commercial projects carried out by individuals
   and hobbyists.
 
-  Any and all other use of this code and / or the patented technology 
+  Any and all other use of this code and / or the patented technology
   described in ERES2 requires purchase of a ReliabiliTTy Technology Licence:
   http://www.safetty.net/technology/reliabilitty-technology-licences
 
-  Please contact SafeTTy Systems Ltd if you require clarification of these 
+  Please contact SafeTTy Systems Ltd if you require clarification of these
   licensing arrangements: http://www.safetty.net/contact
 
-  CorrelaTTor, DecomposiTTor, DuplicaTTor, MoniTTor, PredicTTor, ReliabiliTTy,  
-  SafeTTy, SafeTTy Systems, TriplicaTTor and WarranTTor are registered 
+  CorrelaTTor, DecomposiTTor, DuplicaTTor, MoniTTor, PredicTTor, ReliabiliTTy,
+  SafeTTy, SafeTTy Systems, TriplicaTTor and WarranTTor are registered
   trademarks or trademarks of SafeTTy Systems Ltd in the UK & other countries.
 
 -*----------------------------------------------------------------------------*/
@@ -57,6 +55,7 @@
 
 // The transmit buffer length
 #define Tx_buffer_g_SIZE_BYTES 200
+
 // The receive buffer length
 #define Rx_buffer_g_SIZE_BYTES 200
 
@@ -65,9 +64,9 @@
 static char Tx_buffer_g[Tx_buffer_g_SIZE_BYTES];
 static char Rx_buffer_g[Rx_buffer_g_SIZE_BYTES];
 
-static uint32_t Out_written_index_g;  // Data in buffer that has been written 
+static uint32_t Out_written_index_g;  // Data in buffer that has been written
 static uint32_t Out_waiting_index_g;  // Data in buffer not yet written
-static uint32_t In_read_index_g;      // Data in buffer that has been received 
+static uint32_t In_read_index_g;      // Data in buffer that has been received
 static uint32_t In_waiting_index_g;   // Data in buffer not yet received
 
 // ------ Private function prototypes ----------------------------------------
@@ -108,14 +107,13 @@ void UART2_BUF_O_Init(uint32_t BAUD_RATE)
     Out_waiting_index_g = 0;
     In_read_index_g     = 0;
     In_waiting_index_g  = 0;
-    
+
     UART1_DeInit();
 
     UART1_Init(BAUD_RATE, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
 
-    // UART1_Init((u32)115200, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_RX_ENABLE);
-    // UART1_ITConfig(UART1_IT_RXNE_OR,ENABLE);
-    UART1_Cmd(ENABLE);         
+    // UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
+    UART1_Cmd(ENABLE);
 }
 
 /*----------------------------------------------------------------------------*-
@@ -163,7 +161,7 @@ void UART2_BUF_O_Update(void)
     // Is there any data ready to send?
     if (Out_written_index_g < Out_waiting_index_g)
     {
-        UART2_BUF_O_Send_Char(Tx_buffer_g[Out_written_index_g]);     
+        UART2_BUF_O_Send_Char(Tx_buffer_g[Out_written_index_g]);
 
         Out_written_index_g++;
     }
@@ -202,8 +200,8 @@ void UART2_BUF_O_Update(void)
 
   Sends all data from the software transmit buffer.
 
-  NOTES: 
-  * May have very long execution time!  
+  NOTES:
+  * May have very long execution time!
   * Intended for use when the scheduler is NOT running.
 
   PARAMETERS:
@@ -243,10 +241,10 @@ void UART2_BUF_O_Send_All_Data(void)
 }
 
 /*----------------------------------------------------------------------------*-
-   
+
   UART2_BUF_O_Write_String_To_Buffer()
 
-  Copies a (null terminated) string to the module Tx buffer.  
+  Copies a (null terminated) string to the module Tx buffer.
 
   PARAMETERS:
      None.
@@ -282,7 +280,7 @@ void UART2_BUF_O_Write_String_To_Buffer(const char* const STR_PTR)
 }
 
 /*----------------------------------------------------------------------------*-
-   
+
   UART2_BUF_O_Write_Char_To_Buffer()
 
   Stores a single character in the Tx buffer.
@@ -315,7 +313,7 @@ void UART2_BUF_O_Write_Char_To_Buffer(const char CHARACTER)
     if (Out_waiting_index_g < Tx_buffer_g_SIZE_BYTES)
     {
         Tx_buffer_g[Out_waiting_index_g] = CHARACTER;
-        Out_waiting_index_g++;     
+        Out_waiting_index_g++;
     }
     else
     {
@@ -328,7 +326,7 @@ void UART2_BUF_O_Write_Char_To_Buffer(const char CHARACTER)
 uint8_t uart_read_char_from_buffer(void)
 {
     uint8_t ch = PC_LINK_NO_CHAR;
-    
+
     // If there is new data in the buffer
     if (In_read_index_g < In_waiting_index_g)
     {
@@ -339,7 +337,7 @@ uint8_t uart_read_char_from_buffer(void)
         }
     }
 
-    return ch;    
+    return ch;
 }
 
 /*----------------------------------------------------------------------------*-
@@ -347,10 +345,10 @@ uint8_t uart_read_char_from_buffer(void)
   UART2_BUF_O_Write_Number10_To_Buffer()
 
   Writes 10-digit (decimal, unsigned) number to Tx buffer as a string.
-   
-  Supported values: 0 - 9,999,999,999. 
-   
-  (Can be used with 32-bit unsigned integer values.) 
+
+  Supported values: 0 - 9,999,999,999.
+
+  (Can be used with 32-bit unsigned integer values.)
 
   PARAMETERS:
      DATA : The number to be stored.
@@ -401,7 +399,7 @@ void UART2_BUF_O_Write_Number10_To_Buffer(const uint32_t DATA)
 
   Writes 3-digit (decimal, unsigned) number to Tx buffer as a string.
 
-  Supported values: 0 - 999.   
+  Supported values: 0 - 999.
 
   PARAMETERS:
      DATA : The number to be stored.
@@ -428,9 +426,9 @@ void UART2_BUF_O_Write_Number10_To_Buffer(const uint32_t DATA)
 void UART2_BUF_O_Write_Number03_To_Buffer(const uint32_t DATA)
 {
     char Digit[4];
-     
+
     if (DATA <= 999)
-    {    
+    {
         int_disable();
         Digit[3] = '\0';  // Null terminator
         Digit[2] = 48 + (DATA % 10);
@@ -448,11 +446,11 @@ void UART2_BUF_O_Write_Number03_To_Buffer(const uint32_t DATA)
 
   Writes 2-digit (decimal, unsigned) number to Tx buffer as a string.
 
-  Supported values: 0 - 99.   
+  Supported values: 0 - 99.
 
   PARAMETERS:
      DATA : The number to be stored.
-   
+
   LONG-TERM DATA:
      None.
 
@@ -477,19 +475,19 @@ void UART2_BUF_O_Write_Number02_To_Buffer(const uint32_t DATA)
     char Digit[3];
 
     if (DATA <= 99)
-    {      
+    {
         int_disable();
         Digit[2] = '\0';  // Null terminator
         Digit[1] = 48 + (DATA % 10);
         Digit[0] = 48 + ((DATA/10) % 10);
         int_enable();
-    }  
+    }
 
     UART2_BUF_O_Write_String_To_Buffer(Digit);
 }
 
 /*----------------------------------------------------------------------------*-
-   
+
   UART2_BUF_O_Send_Char()
 
   Uses on-chip UART0 hardware to send a single character.
@@ -518,19 +516,11 @@ void UART2_BUF_O_Write_Number02_To_Buffer(const uint32_t DATA)
 -*----------------------------------------------------------------------------*/
 void UART2_BUF_O_Send_Char(const char CHARACTER)
 {
-#if 0    
-    // Wait for USART to be free
-    // Requires a 'peripheral timeout' mechanism (see ERES2, Chapter 5) 
-    while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == 0);
-
-    USART_SendData(USART2, CHARACTER);
-#else
     UART1_SendData8((unsigned char)CHARACTER);
-  
+
     /* Loop until the end of transmission */
     while (UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET)
       ;
-#endif    
 }
 
 void protocol_processor(uint8_t c)
